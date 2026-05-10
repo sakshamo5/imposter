@@ -49,4 +49,5 @@ The generated `.aab` will be available in build artifacts.
 
 - Replace default app ID (`com.example.imposter`) with your production Android application ID in:
   - `android/app/build.gradle.kts`
+  - `codemagic.yaml` (`environment.vars.PACKAGE_NAME`)
 - Configure Google Play publishing integration in Codemagic when you are ready to automate store deployment.
