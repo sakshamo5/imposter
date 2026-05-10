@@ -17,7 +17,7 @@ workflows:
             storePassword=$CM_KEYSTORE_PASSWORD
             keyPassword=$CM_KEY_PASSWORD
             keyAlias=$CM_KEY_ALIAS
-            storeFile=$CM_BUILD_DIR/$CM_KEYSTORE_PATH
+            storeFile=$CM_KEYSTORE_PATH
             EOF
           else
             echo "Android signing variables are not fully set; build will use debug signing."

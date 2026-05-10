@@ -33,7 +33,7 @@ In Codemagic, add this GitHub repository and choose the `codemagic.yaml` configu
 
 Add these environment variables in Codemagic (Team or App level):
 
-- `CM_KEYSTORE_PATH` (path to uploaded keystore file in Codemagic, e.g. `android/app/upload-keystore.jks`)
+- `CM_KEYSTORE_PATH` (keystore file path provided by Codemagic for your uploaded keystore)
 - `CM_KEYSTORE_PASSWORD`
 - `CM_KEY_ALIAS`
 - `CM_KEY_PASSWORD`

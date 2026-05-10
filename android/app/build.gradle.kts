@@ -47,7 +47,12 @@ android {
                 keyPassword = keystoreProperties["keyPassword"] as String?
                 val storeFilePath = keystoreProperties["storeFile"] as String?
                 if (!storeFilePath.isNullOrBlank()) {
-                    val resolvedStoreFile = file(storeFilePath)
+                    val candidateFile = java.io.File(storeFilePath)
+                    val resolvedStoreFile = if (candidateFile.isAbsolute) {
+                        candidateFile
+                    } else {
+                        file(storeFilePath)
+                    }
                     if (!resolvedStoreFile.exists()) {
                         throw GradleException("Configured release keystore not found: ${resolvedStoreFile.absolutePath}")
                     }
