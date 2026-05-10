@@ -1,5 +1,6 @@
 import java.io.FileInputStream
 import java.util.Properties
+import org.gradle.api.GradleException
 
 plugins {
     id("com.android.application")
@@ -44,7 +45,14 @@ android {
             if (keystorePropertiesFile.exists()) {
                 keyAlias = keystoreProperties["keyAlias"] as String?
                 keyPassword = keystoreProperties["keyPassword"] as String?
-                storeFile = (keystoreProperties["storeFile"] as String?)?.let { file(it) }
+                val storeFilePath = keystoreProperties["storeFile"] as String?
+                if (!storeFilePath.isNullOrBlank()) {
+                    val resolvedStoreFile = file(storeFilePath)
+                    if (!resolvedStoreFile.exists()) {
+                        throw GradleException("Configured release keystore not found: ${resolvedStoreFile.absolutePath}")
+                    }
+                    storeFile = resolvedStoreFile
+                }
                 storePassword = keystoreProperties["storePassword"] as String?
             }
         }

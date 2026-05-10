@@ -18,7 +18,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Codemagic deployment setup
 
-This repository now includes `/home/runner/work/imposter/imposter/codemagic.yaml` with an `android-release` workflow that:
+This repository now includes `codemagic.yaml` with an `android-release` workflow that:
 
 - installs dependencies
 - runs `flutter analyze`
@@ -48,6 +48,6 @@ The generated `.aab` will be available in build artifacts.
 ### 4) Before publishing to stores
 
 - Replace default app IDs (`com.example.imposter`) with your production identifiers in:
-  - `/home/runner/work/imposter/imposter/android/app/build.gradle.kts`
-  - `/home/runner/work/imposter/imposter/ios/Runner.xcodeproj/project.pbxproj`
+  - `android/app/build.gradle.kts`
+  - `ios/Runner.xcodeproj/project.pbxproj`
 - Configure store publishing integrations in Codemagic (Google Play / App Store Connect) when ready.
