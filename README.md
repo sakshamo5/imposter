@@ -47,7 +47,6 @@ The generated `.aab` will be available in build artifacts.
 
 ### 4) Before publishing to stores
 
-- Replace default app IDs (`com.example.imposter`) with your production identifiers in:
+- Replace default app ID (`com.example.imposter`) with your production Android application ID in:
   - `android/app/build.gradle.kts`
-  - `ios/Runner.xcodeproj/project.pbxproj`
-- Configure store publishing integrations in Codemagic (Google Play / App Store Connect) when ready.
+- Configure Google Play publishing integration in Codemagic when you are ready to automate store deployment.

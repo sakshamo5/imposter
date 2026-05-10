@@ -43,8 +43,16 @@ android {
     signingConfigs {
         create("release") {
             if (keystorePropertiesFile.exists()) {
-                keyAlias = keystoreProperties["keyAlias"] as String?
-                keyPassword = keystoreProperties["keyPassword"] as String?
+                fun requiredProperty(name: String): String {
+                    val value = (keystoreProperties[name] as String?)?.trim()
+                    if (value.isNullOrEmpty()) {
+                        throw GradleException("Missing required keystore property: $name")
+                    }
+                    return value
+                }
+
+                keyAlias = requiredProperty("keyAlias")
+                keyPassword = requiredProperty("keyPassword")
                 val storeFilePath = keystoreProperties["storeFile"] as String?
                 if (!storeFilePath.isNullOrBlank()) {
                     val candidateFile = java.io.File(storeFilePath)
@@ -57,8 +65,10 @@ android {
                         throw GradleException("Configured release keystore not found: ${resolvedStoreFile.absolutePath}")
                     }
                     storeFile = resolvedStoreFile
+                } else {
+                    throw GradleException("Missing required keystore property: storeFile")
                 }
-                storePassword = keystoreProperties["storePassword"] as String?
+                storePassword = requiredProperty("storePassword")
             }
         }
     }
